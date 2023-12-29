@@ -19,3 +19,9 @@ docker compose でコンテナ起動する。
 ```
 docker compose up -d
 ```
+
+証明書コピー
+
+```
+docker compose cp es01:/usr/share/elasticsearch/config/certs/ca/ca.crt ./
+```
