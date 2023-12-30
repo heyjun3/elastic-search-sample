@@ -23,3 +23,14 @@ test("register document", async () => {
   })
   expect(res.result).toEqual('created')
 })
+
+test("register multiple document", async () => {
+  const res = await client.bulk({
+    operations: [
+      { index: { _index: 'search-test' } },
+      { character: 'test', quote: 'tests'},
+      { index: { _index: 'search-test' } },
+      { character: 'test1', quote: 'tests1'},
+    ]
+  })
+})
