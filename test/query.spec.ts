@@ -1,4 +1,4 @@
-import { Client, estypes } from '@elastic/elasticsearch'
+import { Client } from '@elastic/elasticsearch'
 import * as fs from 'fs'
 
 import {author} from '../src/author'
@@ -31,4 +31,23 @@ test("range query", async () => {
     expect(hit._source?.age).toBeGreaterThanOrEqual(1)
     expect(hit._source?.age).toBeLessThanOrEqual(70)
   }
+})
+
+test("sort by age", async () => {
+  const res = await client.search<author>({
+    index: 'search-test',
+    query: {
+      range: {
+        age: {
+          gte: 1,
+          lte: 100,
+        },
+      },
+    },
+    sort: [
+      {age: {order: "desc"}}
+    ]
+  })
+
+  console.log(res.hits.hits)
 })
