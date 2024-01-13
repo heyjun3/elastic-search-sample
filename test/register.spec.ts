@@ -19,6 +19,7 @@ test("register document", async () => {
     document: {
       character: 'Ned Stark',
       quote: 'Winter is coming',
+      age: Math.floor(Math.random() * 100)
     }
   })
   expect(res.result).toEqual('created')
