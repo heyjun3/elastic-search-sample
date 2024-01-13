@@ -25,3 +25,8 @@ docker compose up -d
 ```
 docker compose cp es01:/usr/share/elasticsearch/config/certs/ca/ca.crt ./
 ```
+
+動作確認
+```
+curl https://localhost:9200/search-test --cacert ca.crt -H "Authorization: ApiKey "${API_KEY}"" -H "Content-Type: application/json"
+```
