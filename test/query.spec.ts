@@ -51,3 +51,17 @@ test("sort by age", async () => {
 
   console.log(res.hits.hits)
 })
+
+test("nested query", async () => {
+  const res = await client.search<author>({
+    index: 'search-test',
+    query: {
+      nested: {
+        path: "age",
+        query: {
+
+        }
+      }
+    }
+  })
+})
