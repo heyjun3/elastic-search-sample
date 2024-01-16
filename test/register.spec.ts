@@ -24,3 +24,6 @@ test("register document", async () => {
   })
   expect(res.result).toEqual('created')
 })
+
+test("register mapping", async () => {
+})

@@ -59,9 +59,15 @@ test("nested query", async () => {
       nested: {
         path: "age",
         query: {
-
+          range: {
+            age: {
+              gt: 1,
+            }
+          }
         }
       }
     }
   })
+
+  console.log(res.hits.hits)
 })
