@@ -1,9 +1,10 @@
-import { Module } from "@nestjs/common";
+import { Global, Module } from "@nestjs/common";
 import { ElasticsearchModule } from "@nestjs/elasticsearch";
 import * as fs from 'fs'
 
 const ca = fs.readFileSync('./ca.crt')
 
+@Global()
 @Module({
   imports: [ElasticsearchModule.register({
     node: 'https://es01:9200',
@@ -13,6 +14,6 @@ const ca = fs.readFileSync('./ca.crt')
     tls: {
       ca: ca
     }
-  })]
+  })],
 })
 export class SearchModule { }
