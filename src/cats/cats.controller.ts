@@ -10,8 +10,6 @@ export class CatsController {
   ) {}
   @Get()
   async findAll(): Promise<string> {
-    console.warn(this.elasticsearchService)
-    console.warn(this.catsService)
     const res = await this.elasticsearchService.search({
       query: {
         match_all: {}

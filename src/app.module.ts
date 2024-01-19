@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common'
 import { CatsModule } from './cats/cats.module'
-import { SearchModule } from 'lib/elasticsearch'
+import { ConfigModule } from '@nestjs/config'
+import config from 'config'
 
 @Module({
-  imports: [CatsModule, SearchModule],
+  imports: [CatsModule, ConfigModule.forRoot({load: [config]})],
+  exports: [ConfigModule],
 })
 export class AppModule { }
