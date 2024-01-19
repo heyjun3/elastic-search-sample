@@ -5,17 +5,11 @@ import { CatsService } from './cats.service'
 @Controller('cats')
 export class CatsController {
   constructor(
-    private readonly elasticsearchService: ElasticsearchService,
     private readonly catsService: CatsService,
   ) {}
   @Get()
   async findAll(): Promise<string> {
-    const res = await this.elasticsearchService.search({
-      query: {
-        match_all: {}
-      }
-    })
-    console.warn(res.hits.hits)
+    await this.catsService.findAll()
     return 'This action returns all cats'
   }
 }
