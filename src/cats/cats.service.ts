@@ -1,5 +1,4 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { ElasticsearchService } from "@nestjs/elasticsearch";
 import { Searchservice } from "lib/search.service";
 
 @Injectable()
@@ -14,16 +13,18 @@ export class CatsService {
   }
 
   async findAll(): Promise<{ name: string }[]> {
-    const res = await this.searchService.search<{ age: number }>({
+    // const res = await this.searchService.search<{name: string}>({
+    const res = await this.searchService.count({
       query: {
-        range: {
-          age: {
-            gte: 50,
-          }
-        }
+        // range: {
+        //   age: {
+        //     gte: 0,
+        //   }
+        // }
+        match_all: {}
       }
-    })
-    console.warn(res.hits.hits)
+    }, {})
+    console.warn(res)
     return this.cats
   }
 }

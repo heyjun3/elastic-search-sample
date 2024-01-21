@@ -1,6 +1,6 @@
-import { Global, Module, Scope } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { Module, Scope } from "@nestjs/common";
 import { ElasticsearchModule, ElasticsearchService } from "@nestjs/elasticsearch";
+import { REQUEST } from "@nestjs/core";
 import * as fs from 'fs'
 import { Searchservice } from "./search.service";
 
@@ -8,11 +8,12 @@ const ca = fs.readFileSync('./ca.crt')
 
 const searchServiceProvider = {
   provide: 'SEARCH_SERVICE',
-  useFactory: (esService: ElasticsearchService) => {
+  useFactory: (esService: ElasticsearchService, req: Request) => {
     console.warn('create child client')
+    console.warn(req.url)
     return new Searchservice(esService.child({}))
   },
-  inject: [ElasticsearchService],
+  inject: [ElasticsearchService, REQUEST],
   scope: Scope.REQUEST
 }
 
