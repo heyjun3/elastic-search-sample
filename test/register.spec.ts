@@ -26,5 +26,3 @@ describe('register test', () => {
     expect(res.result).toEqual('created')
   })
 })
-test("register mapping", async () => {
-})

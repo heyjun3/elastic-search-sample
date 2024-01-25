@@ -18,7 +18,7 @@ export const elasticsearchClientFactory = () => {
 
 export const seeder = async <T>(client: Client, index: string, dataset:Array<T>) => {
   const operations = dataset.flatMap((doc) => [{index: { _index: index}}, doc])
-  const res = await client.bulk({ operations})
+  const res = await client.bulk({ refresh: true, operations})
   if (res.errors) {
     console.warn(res.items)
     for (const item of res.items) {
