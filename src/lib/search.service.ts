@@ -1,6 +1,6 @@
 import { Client, TransportRequestOptions, TransportRequestOptionsWithMeta, TransportRequestOptionsWithOutMeta } from "@elastic/elasticsearch";
 import { QueryDslQueryContainer, SearchRequest } from "@elastic/elasticsearch/lib/api/types";
-import { Injectable } from "@nestjs/common";
+import { Injectable, OnModuleInit } from "@nestjs/common";
 
 type Options = TransportRequestOptions | TransportRequestOptionsWithMeta | TransportRequestOptionsWithOutMeta
 
@@ -8,7 +8,10 @@ type Options = TransportRequestOptions | TransportRequestOptionsWithMeta | Trans
 export class Searchservice {
   constructor(
     private readonly esService: Client
-  ) { }
+  ) {
+    this.esService.diagnostic.on('request', (err, result) => {
+    })
+  }
 
   async search<T extends any>(searchRequest: SearchRequest, options?: Options) {
     return await this.esService.search<T>(this.tenantQueryWrapper(searchRequest), options)

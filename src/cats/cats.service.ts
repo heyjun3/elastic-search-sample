@@ -24,7 +24,6 @@ export class CatsService {
         match_all: {}
       }
     }, {})
-    console.warn(res)
     return this.cats
   }
 }
