@@ -39,7 +39,7 @@ export class SearchModule implements OnModuleInit {
   ) { }
   onModuleInit() {
     this.searchService.diagnostic.on('request', (err, reuslt) => {
-      // console.warn(err, reuslt)
+      console.warn(err, reuslt)
     })
     console.warn("The module has been initialized.")
   }

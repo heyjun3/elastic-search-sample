@@ -18,8 +18,10 @@ export class Searchservice {
   }
 
   async count(searchRequest: SearchRequest, options?: Options) {
+    await this.esService.indices.putAlias({index: 'search-test', name: `search-test-${Math.random() * 1000}`, filter: {}})
     return await this.esService.count(this.tenantQueryWrapper(searchRequest), options)
   }
+
   private tenantQueryWrapper(searchRequest: SearchRequest): SearchRequest {
     const tenantQuery = {
       bool: {

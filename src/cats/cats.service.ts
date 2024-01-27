@@ -15,6 +15,7 @@ export class CatsService {
   async findAll(): Promise<{ name: string }[]> {
     // const res = await this.searchService.search<{name: string}>({
     const res = await this.searchService.count({
+      index: 'search-test',
       query: {
         // range: {
         //   age: {
@@ -24,6 +25,7 @@ export class CatsService {
         match_all: {}
       }
     }, {})
+    console.warn(res)
     return this.cats
   }
 }
