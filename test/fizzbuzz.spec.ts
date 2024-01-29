@@ -77,3 +77,20 @@ describe('property based testing', () => {
     )
   })
 })
+
+describe('check sort strings of array', () => {
+  test('asc', () => {
+    const arr = ["apple","summer","sun","zoo"] 
+
+    for (let i = 1; i < arr.length; i++ ){
+      expect(arr[i - 1].localeCompare(arr[i])).toBeLessThanOrEqual(0)
+    }
+  })
+
+  test('desc', () => {
+    const arr = ['zoo', 'sun', 'summer', 'apple']
+    for (let i = 1; i < arr.length; i++ ){
+      expect(arr[i - 1].localeCompare(arr[i])).toBeGreaterThanOrEqual(0)
+    }
+  })
+})
