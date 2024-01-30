@@ -1,7 +1,14 @@
 import http from 'k6/http';
-import { sleep } from 'k6';
+import { sleep, check } from 'k6';
+
+export const options = {
+  vus: 10,
+  duration: '30s',
+}
 
 export default function () {
-  http.get('<https://test.k6.io>');
+  let res = http.get('http://localhost:3000/cats');
+
+  check(res, {'status was 200': (r) => r.status == 200})
   sleep(1);
 }
