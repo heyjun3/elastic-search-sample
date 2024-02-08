@@ -9,7 +9,7 @@ class User {
 
     showAll() {
         const a = [this.name, this.age].map((v) => {
-            console.warn(v.toUpperCase())
+            console.warn(v)
         })
     }
 }

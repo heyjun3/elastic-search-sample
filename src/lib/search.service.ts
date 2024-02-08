@@ -29,7 +29,7 @@ export class Searchservice {
           {
             range: {
               age: {
-                gte: 0,
+                gte: Number.MAX_SAFE_INTEGER,
               }
             }
           },
