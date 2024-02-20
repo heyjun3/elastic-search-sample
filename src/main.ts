@@ -5,7 +5,7 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 
 async function bootstrap() {
     // EventEmitter.setMaxListeners(100)
-    const app = await NestFactory.create<NestExpressApplication>(AppModule, {rawBody: true})
+    const app = await NestFactory.create<NestExpressApplication>(AppModule)
     await app.listen(3000)
 }
 bootstrap()
